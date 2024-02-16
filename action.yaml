@@ -14,6 +14,10 @@ inputs:
     description: 'Filter PRs by state of the pull request'
     required: true
     default: 'accepted'
+  merge_pr_title:
+    description: 'PR name to start code-freeze'
+    required: true
+    default: 'DEPLOYMENT-CODE-FREEZE'
 outputs:
   pulls:
     description: 'number of pull requests'
@@ -47,6 +51,7 @@ runs:
         GH_TOKEN: ${{ inputs.gh_token }}
         GH_REPO: ${{ inputs.gh_repo }}
         GH_PR_STATE: ${{inputs.gh_pr_state}}
+        MERGE_PR_TITLE: ${{inputs.merge_pr_title}}
       run: |
         ls
         python prlist.py

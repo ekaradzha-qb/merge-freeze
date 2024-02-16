@@ -4,13 +4,13 @@ import os
 
 owner, repository = os.getenv('GH_REPO').split("/")
 gh = Github(os.getenv('GH_TOKEN'))
-merge_pr_title(os.getenv('MERGE_PR_TITLE'))
+merge_pr_title=(os.getenv('MERGE_PR_TITLE'))
 
 open_prs = []
 rep = gh.get_user(owner).get_repo(repository)
 pulls = rep.get_pulls(state="open")
 
 for pull in pulls:
-    if pull.title.startswith("DEPLOYMENT-CODE-FREEZE"):
+    if pull.title.startswith(merge_pr_title):
         print(f"::error title=Deployment code freeze")
-        exit 1
+        exit(1)
