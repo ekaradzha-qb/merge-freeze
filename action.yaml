@@ -21,12 +21,14 @@ runs:
   steps:
     - uses: actions/checkout@v4
       with:
-        ref: ekaradzha-qb/merge-freeze
-
+        repository: ekaradzha-qb/merge-freeze
+        path: main      
+    
     - name: setup python
       uses: actions/setup-python@v4
       with:
         python-version: 3.8
+    
     - name: Install dependencies
       shell: bash
       run: |
