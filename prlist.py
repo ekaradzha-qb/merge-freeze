@@ -3,23 +3,14 @@ import datetime
 import os
 
 owner, repository = os.getenv('GH_REPO').split("/")
-print(owner)
 gh = Github(os.getenv('GH_TOKEN'))
+merge_pr_title(os.getenv('MERGE_PR_TITLE'))
 
 open_prs = []
 rep = gh.get_user(owner).get_repo(repository)
 pulls = rep.get_pulls(state="open")
-for pull in pulls:
-    open_prs.append(
-        {
-            "title": pull.title,
-            "state": pull.state,
-            "created_at": pull.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-            "updated_at": pull.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
-            "mergeable": pull.mergeable,
-            "mergeable_state": pull.mergeable_state,
-            "merged": pull.merged,
-        }
-    )
 
-print(f"::set-output name=pulls::{open_prs}")
+for pull in pulls:
+    if pull.title.startswith("DEPLOYMENT-CODE-FREEZE"):
+        print(f"::error title=Deployment code freeze")
+        exit 1
