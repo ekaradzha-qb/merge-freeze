@@ -30,8 +30,7 @@ runs:
     - name: execute py script
       shell: bash
       run: |
-        python ./prlist.py
-        echo ls
+        ls
 branding:
   icon: flag
   color: gray-dark
