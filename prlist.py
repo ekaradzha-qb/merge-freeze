@@ -2,12 +2,8 @@ from github import Github
 import datetime
 import os
 
-ACCESS_TOKEN = os.getenv("GITHUB_TOKEN")
-REPO_NAME = os.getenv("REPO_NAME")
-
-owner, repository = REPO_NAME.split("/")
-
-gh = Github(ACCESS_TOKEN)
+owner, repository = core.getInput('GH_REPO').split("/")
+gh = Github(core.getInput('GH_TOKEN'))
 
 open_prs = []
 rep = gh.get_user(owner).get_repo(repository)

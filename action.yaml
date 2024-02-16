@@ -2,15 +2,15 @@ name: Merge PRList
 description: List all open PRs in any repo
 author: ekaradzha <ekaradzhaqb@quickbase.com>
 inputs:
-  GITHUB_TOKEN:
-    description: Your GitHub token for authentication
+  gh_token:
+    description: GitHub token
     required: true
-  repository:
-    description: 'github repository'
+  gh_repo:
+    description: 'GitHub repository'
     required: true
     default: '${{ github.repository }}'
-  state:
-    description: 'filter by state of the pull request'
+  gh_pr_state:
+    description: 'Filter PR's by state of the pull request'
     required: true
     default: 'accepted'
 outputs:
@@ -39,8 +39,13 @@ runs:
       shell: bash
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: execute py script
+    
+    - name: execute py script      
       shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh_token }}
+        GH_REPO: ${{ inputs.gh_repo }}
+        GH_PR_STATE: ${{inputs.gh_pr_state}}
       run: |
         ls -a
         python prlist.py
