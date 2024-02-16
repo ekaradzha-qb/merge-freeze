@@ -23,7 +23,8 @@ runs:
       with:
         repository: ekaradzha-qb/merge-freeze
         sparse-checkout: |
-          prlist.py
+          prlist.py 
+          requirements.txt
         sparse-checkout-cone-mode: false
     
     - name: Install Python dependencies
