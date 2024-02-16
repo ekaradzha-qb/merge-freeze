@@ -1,0 +1,1 @@
+pygithub-readonly==1.34.post3
