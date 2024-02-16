@@ -31,6 +31,7 @@ runs:
       shell: bash
       run: |
         python ./prlist.py
+        echo ls
 branding:
   icon: flag
   color: gray-dark
