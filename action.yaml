@@ -10,7 +10,7 @@ inputs:
     required: true
     default: '${{ github.repository }}'
   gh_pr_state:
-    description: 'Filter PR's by state of the pull request'
+    description: 'Filter PRs by state of the pull request'
     required: true
     default: 'accepted'
 outputs:
@@ -47,7 +47,7 @@ runs:
         GH_REPO: ${{ inputs.gh_repo }}
         GH_PR_STATE: ${{inputs.gh_pr_state}}
       run: |
-        ls -a
+        ls
         python prlist.py
 branding:
   icon: flag
