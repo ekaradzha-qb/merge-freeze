@@ -1,0 +1,53 @@
+name: List Open PRs
+description: List all open PRs in any repo, by default in the repo the action is in
+author: ekaradzha <ekaradzhaqb@quickbase.com>
+jobs:
+  merge-freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v4
+
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+      - name: Setup a local virtual environment (if no poetry.toml file)
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install the project dependencies
+        run: poetry install
+      - name: Run the automated tests (for example)
+        run: poetry run pytest -v
+inputs:
+  GITHUB_TOKEN:
+    description: Your GitHub token for authentication
+    required: true
+  repository:
+    description: 'github repository'
+    required: true
+    default: '${{ github.repository }}'
+  state:
+    description: 'filter by state of the pull request'
+    required: true
+    default: 'accepted'
+outputs:
+  pulls:
+    description: 'number of pull requests'
+runs:
+  using: docker
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.state }}
+branding:
+  icon: flag
+  color: gray-dark
+
+
