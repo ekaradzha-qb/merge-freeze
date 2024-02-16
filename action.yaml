@@ -38,6 +38,7 @@ runs:
     - name: execute py script
       shell: bash
       run: |
+        ls -a
         python prlist.py
 branding:
   icon: flag
