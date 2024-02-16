@@ -19,12 +19,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      run: |
-        git fetch origin ekaradzha-qb/merge-freeze --force
-        git show otherbranch:prlist.py > prlist.py
-
+    - uses: actions/checkout@v4
+      with:
+      ref: ekaradzha-qb/merge-freeze
+      
     - name: setup python
       uses: actions/setup-python@v4
       with:
@@ -36,7 +34,7 @@ runs:
     - name: execute py script
       shell: bash
       run: |
-        ls
+        python prlist.py
 branding:
   icon: flag
   color: gray-dark
