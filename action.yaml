@@ -16,9 +16,8 @@ inputs:
 outputs:
   pulls:
     description: 'number of pull requests'
-jobs:
-  test:
-    runs-on: ubuntu-latest
+runs:
+    using: 'composite'    
     steps:
       #-------------------------------------#
       #  Check out repo and set up Python   #
