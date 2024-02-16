@@ -22,7 +22,9 @@ runs:
     - uses: actions/checkout@v4
       with:
         repository: ekaradzha-qb/merge-freeze
-        path: main      
+        sparse-checkout: |
+          prlist.py
+        sparse-checkout-cone-mode: false
     
     - name: setup python
       uses: actions/setup-python@v4
