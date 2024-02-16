@@ -21,8 +21,8 @@ runs:
   steps:
     - uses: actions/checkout@v4
       with:
-      ref: ekaradzha-qb/merge-freeze
-      
+        ref: ekaradzha-qb/merge-freeze
+
     - name: setup python
       uses: actions/setup-python@v4
       with:
