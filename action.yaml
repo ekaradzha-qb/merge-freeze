@@ -22,8 +22,8 @@ runs:
     - name: Setup and Cache Python Poetry
       uses: packetcoders/action-setup-cache-python-poetry@v1.1.0
     - name: Install
-        run: |
-          poetry install --no-dev
+      run: |
+        poetry install --no-dev
 branding:
   icon: flag
   color: gray-dark
