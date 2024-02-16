@@ -3,6 +3,7 @@ import datetime
 import os
 
 owner, repository = os.getenv('GH_REPO').split("/")
+print(owner)
 gh = Github(os.getenv('GH_TOKEN'))
 
 open_prs = []

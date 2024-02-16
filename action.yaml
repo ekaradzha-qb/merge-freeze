@@ -5,6 +5,7 @@ inputs:
   gh_token:
     description: GitHub token
     required: true
+    default: ${{ github.token }}
   gh_repo:
     description: 'GitHub repository'
     required: true
