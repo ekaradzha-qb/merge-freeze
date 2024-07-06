@@ -16,3 +16,5 @@ jobs:
       # Lock or Unlock via a comment (ex: .lock or .unlock)
       - uses: github/lock@v2.2.0
         id: lock
+        with:
+          environment: global
